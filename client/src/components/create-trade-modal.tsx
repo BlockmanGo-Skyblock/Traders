@@ -50,7 +50,6 @@ export default function CreateTradeModal({ isOpen, onClose, onSuccess }: CreateT
     resolver: zodResolver(extendedTradeSchema),
     defaultValues: {
       title: "",
-      category: "",
       wants: "",
       offers: "",
       notes: "",

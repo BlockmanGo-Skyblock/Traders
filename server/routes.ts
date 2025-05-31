@@ -115,16 +115,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get all trades
   app.get("/api/trades", async (req, res) => {
     try {
-      const { category, search, sort } = req.query;
+      const { region = "global", search, sort } = req.query;
       
       let trades;
       
       if (search) {
-        trades = await storage.searchTrades(search as string);
-      } else if (category) {
-        trades = await storage.getTradesByCategory(category as string);
+        trades = await storage.searchTrades(search as string, region as string);
       } else {
-        trades = await storage.getAllTrades();
+        trades = await storage.getTradesByRegion(region as string);
       }
 
       // Apply sorting
@@ -173,7 +171,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const trade = await storage.createTrade({
         ...validatedData,
         authorName: user.displayName || user.username,
-      }, user.id);
+      }, user.id, user.region || "global");
       
       res.status(201).json(trade);
     } catch (error) {
