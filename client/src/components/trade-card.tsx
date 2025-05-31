@@ -12,16 +12,11 @@ interface TradeCardProps {
   onRefetch: () => void;
 }
 
-const categoryColors: Record<string, string> = {
-  weapons: "bg-electric-blue",
-  armor: "bg-gaming-purple",
-  tools: "bg-cyan-500",
-  materials: "bg-gaming-green",
-  rare: "bg-gaming-gold text-black",
-};
+
 
 const getInitials = (name: string) => {
-  return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  if (!name) return "??";
+  return name.split(' ').map(n => n?.[0] || '').join('').toUpperCase().slice(0, 2) || "??";
 };
 
 const getAvatarColor = (name: string) => {
@@ -99,8 +94,8 @@ export default function TradeCard({ trade, onRefetch }: TradeCardProps) {
               </p>
             </div>
           </div>
-          <Badge className={`${categoryColors[trade.category] || "bg-muted"} text-xs font-medium`}>
-            {trade.category.charAt(0).toUpperCase() + trade.category.slice(1)}
+          <Badge className="bg-gaming-purple text-xs font-medium">
+            {trade.region || "Global"}
           </Badge>
         </div>
         
