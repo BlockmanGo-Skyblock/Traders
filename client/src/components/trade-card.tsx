@@ -1,10 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Eye, MessageCircle, ArrowDown, ArrowUp } from "lucide-react";
+import { Eye, MessageCircle, ArrowDown, ArrowUp, Trash2 } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 import type { Trade } from "@shared/schema";
 
 interface TradeCardProps {
@@ -49,6 +50,7 @@ const formatTimeAgo = (date: Date) => {
 
 export default function TradeCard({ trade, onRefetch }: TradeCardProps) {
   const { toast } = useToast();
+  const { user } = useAuth();
 
   const respondMutation = useMutation({
     mutationFn: () => apiRequest("POST", `/api/trades/${trade.id}/respond`),
@@ -63,6 +65,24 @@ export default function TradeCard({ trade, onRefetch }: TradeCardProps) {
       toast({
         title: "Error",
         description: "Failed to record response. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: () => apiRequest("DELETE", `/api/trades/${trade.id}`),
+    onSuccess: () => {
+      toast({
+        title: "Trade deleted",
+        description: "Your trade has been removed successfully.",
+      });
+      onRefetch();
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to delete trade. Please try again.",
         variant: "destructive",
       });
     },
@@ -142,13 +162,27 @@ export default function TradeCard({ trade, onRefetch }: TradeCardProps) {
               {trade.responses}
             </span>
           </div>
-          <Button 
-            onClick={handleContact}
-            disabled={respondMutation.isPending}
-            className="bg-electric-blue hover:bg-electric-blue/80 text-sm font-medium"
-          >
-            {respondMutation.isPending ? "Contacting..." : "Contact"}
-          </Button>
+          <div className="flex items-center space-x-2">
+            {user && user.id === trade.authorId && (
+              <Button 
+                onClick={() => deleteMutation.mutate()}
+                disabled={deleteMutation.isPending}
+                variant="destructive"
+                size="sm"
+                className="text-xs"
+              >
+                <Trash2 className="h-3 w-3 mr-1" />
+                {deleteMutation.isPending ? "Deleting..." : "Delete"}
+              </Button>
+            )}
+            <Button 
+              onClick={handleContact}
+              disabled={respondMutation.isPending}
+              className="bg-electric-blue hover:bg-electric-blue/80 text-sm font-medium"
+            >
+              {respondMutation.isPending ? "Contacting..." : "Contact"}
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>

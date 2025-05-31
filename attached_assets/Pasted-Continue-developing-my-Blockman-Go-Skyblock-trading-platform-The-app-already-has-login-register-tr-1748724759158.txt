@@ -1,0 +1,121 @@
+Continue developing my Blockman Go Skyblock trading platform. The app already has login/register, trade creation, profiles, and regional restrictions. I want you to implement these next features exactly as described:
+
+🧠 CORE ENHANCEMENTS
+Delete Own Trades Only
+
+Users should be able to delete their own trades, but not edit them.
+
+Add a "Delete Trade" button visible only to the author.
+
+Accept / Decline with Offer Chat
+
+Keep the Accept/Decline system.
+
+Once a trade is accepted, create a private real-time chat page (WebSocket or Firebase).
+
+Allow users to send counter-offers before accepting.
+
+Only allow trade owners and responders to view that chat.
+
+Web/Crome Notifications
+
+Add browser-based push notifications for:
+
+New message in trade chat
+
+Trade accepted
+
+Trade completed
+
+Ask for notification permission when user logs in.
+
+❌ No Favorites/Watchlist (skip this).
+
+Progressive Web App (PWA) Support
+
+Make the site installable on mobile with a home screen icon.
+
+Offline caching support for the homepage and trade feed.
+
+🛡️ TRUST, SAFETY & MODERATION
+Trade Reporting System
+
+Add “Report Trade” with reasons (Scam, Fake Info, Wrong Region, Harassment).
+
+Send reports to a special admin dashboard.
+
+Admin username is @xSoniteALT – only this user can access the report list.
+
+Close Trade Option
+
+Add “Close Trade” button for owners.
+
+This marks the trade as inactive and hides it from search/feed.
+
+Auto-ban for Spam/Violations
+
+Add detection for:
+
+Excessive trade spam (bypassing cooldown)
+
+Multiple failed login attempts
+
+Warn user first, then block their actions temporarily.
+
+Verified Trader Badge
+
+Admin-only feature. Allow @xSoniteALT to manually mark trusted users as “Verified”.
+
+Show badge on their profile and trade cards.
+
+🫂 COMMUNITY & ENGAGEMENT
+Forum / Comment Section
+
+Create a separate “Community” section for:
+
+Tips, discussions, Q&A
+
+Guides and general chat
+
+Allow posts and replies. Sorted by most recent.
+
+Trader Leaderboard
+
+Make a separate page showing:
+
+Top traders by rating or number of completed trades.
+
+Region-based sorting.
+
+❌ No marketplace stats (skip this).
+
+❌ No invite system (skip this).
+
+🔧 ADDITIONAL FEATURES
+✅ User Profile Pages
+
+Clicking on a user's avatar or name should lead to a full profile page.
+
+Show:
+
+Their region
+
+Reputation (star rating)
+
+All received comments
+
+List of completed trades
+
+✅ View Incoming Offers
+
+On each trade, allow users to see who sent them offers (if applicable) with timestamps.
+
+Useful for deciding who to accept.
+
+✅ Theme Toggle
+
+Add a toggle button to switch between dark mode (default) and light mode (white UI).
+
+Store user preference using cookies or localStorage.
+
+Please build these features step-by-step and keep functionality protected by auth. Make sure @xSoniteALT has proper admin access. Let me know once everything is done so I can test each one.
