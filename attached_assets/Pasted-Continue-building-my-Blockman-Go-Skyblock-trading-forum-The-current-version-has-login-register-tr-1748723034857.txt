@@ -1,0 +1,91 @@
+Continue building my Blockman Go Skyblock trading forum. The current version has login, register, trade post creation, and basic profile logic. I now want to add the following features to improve the experience:
+
+🔁 Trade Post Cooldown
+Add a cooldown of 10 minutes per user between trade posts.
+
+Store the timestamp of the last trade posted by the user and prevent posting if within 10 minutes.
+
+Show a friendly error if they try to post too soon.
+
+✅ Accept / Decline Trade System
+Add “Accept” and “Decline” buttons on each trade visible to other users (not the owner).
+
+Once a trade is accepted:
+
+Create a real-time private chat page for both users.
+
+Mark the trade as “Accepted”.
+
+If declined, mark trade as “Declined” and disable further interaction.
+
+💬 Real-Time Trade Chat
+When a trade is accepted, redirect both users to a chat page unique to that trade.
+
+Use WebSocket (or Firebase Realtime DB if preferred) to enable real-time messaging.
+
+Store chat messages in the database, linked to the trade ID and user IDs.
+
+Only allow participants of the trade to access the chat.
+
+🌍 Region-Based Trading
+When a user registers, add a dropdown for choosing their region (e.g., Asia, EU, NA, SA).
+
+Store the region in their profile.
+
+In trade creation, auto-tag trades with the user's region.
+
+In trade feed and search:
+
+Only show trades from the same region as the logged-in user.
+
+Disable or hide trades from other regions.
+
+🧾 Completed Trade History
+When either user marks a trade as “Completed” in the chat:
+
+Add the trade to both users’ completed trades list.
+
+Add a prompt to rate the trade (1–5 stars) and leave a comment.
+
+Store this feedback in the database.
+
+🧑 User Profile Page Enhancements
+Clickable profile avatars that lead to a user’s public profile page.
+
+Show:
+
+Username and avatar
+
+Region
+
+Reputation rating (average of completed trade feedback)
+
+All comments left by other users
+
+List of completed trades with titles and dates
+
+⭐ Rating System
+After each completed trade, prompt both users to:
+
+Leave a 1–5 star rating
+
+Write a short comment or feedback
+
+Show average rating next to usernames site-wide.
+
+Add star icons and latest reviews on the user profile page.
+
+📷 Trade Screenshots
+Allow image upload (1–3 images max) when creating a trade.
+
+Use Replit’s file system or a CDN to store them.
+
+Show image thumbnails on the trade cards and full-size previews when clicked.
+
+🛑 Final Notes
+Keep everything secure and region-restricted.
+
+Make sure cooldowns, user actions (accept/decline), and chats are locked to logged-in users only.
+
+Profile pages, trade posts, and chats must all stay region-aware and auth-protected.
+

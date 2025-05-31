@@ -9,14 +9,14 @@ export interface IStorage {
   
   // Trade operations
   getAllTrades(): Promise<Trade[]>;
+  getTradesByRegion(region: string): Promise<Trade[]>;
   getTradeById(id: number): Promise<Trade | undefined>;
-  createTrade(trade: InsertTrade, authorId: number): Promise<Trade>;
+  createTrade(trade: InsertTrade, authorId: number, region: string): Promise<Trade>;
   updateTrade(id: number, trade: Partial<Trade>): Promise<Trade | undefined>;
   deleteTrade(id: number): Promise<boolean>;
   incrementTradeViews(id: number): Promise<void>;
   incrementTradeResponses(id: number): Promise<void>;
-  searchTrades(query: string): Promise<Trade[]>;
-  getTradesByCategory(category: string): Promise<Trade[]>;
+  searchTrades(query: string, region: string): Promise<Trade[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -38,8 +38,39 @@ export class DatabaseStorage implements IStorage {
     return user;
   }
 
+  async updateUserLastTradeTime(userId: number): Promise<void> {
+    await db
+      .update(users)
+      .set({ lastTradePostedAt: new Date() })
+      .where(eq(users.id, userId));
+  }
+
+  async updateUserRating(userId: number, newRating: number): Promise<void> {
+    const user = await this.getUser(userId);
+    if (user) {
+      const totalRatings = user.totalRatings || 0;
+      const currentAvg = user.averageRating || 0;
+      const newTotal = totalRatings + 1;
+      const newAvg = Math.round(((currentAvg * totalRatings) + newRating) / newTotal);
+      
+      await db
+        .update(users)
+        .set({ 
+          averageRating: newAvg,
+          totalRatings: newTotal
+        })
+        .where(eq(users.id, userId));
+    }
+  }
+
   async getAllTrades(): Promise<Trade[]> {
     return await db.select().from(trades).orderBy(trades.createdAt);
+  }
+
+  async getTradesByRegion(region: string): Promise<Trade[]> {
+    return await db.select().from(trades)
+      .where(eq(trades.region, region))
+      .orderBy(trades.createdAt);
   }
 
   async getTradeById(id: number): Promise<Trade | undefined> {
@@ -47,12 +78,21 @@ export class DatabaseStorage implements IStorage {
     return trade || undefined;
   }
 
-  async createTrade(insertTrade: InsertTrade, authorId: number): Promise<Trade> {
+  async createTrade(insertTrade: InsertTrade, authorId: number, region: string): Promise<Trade> {
     const [trade] = await db
       .insert(trades)
-      .values({ ...insertTrade, authorId })
+      .values({ ...insertTrade, authorId, region })
       .returning();
     return trade;
+  }
+
+  async updateTradeStatus(id: number, status: string, acceptedById?: number): Promise<Trade | undefined> {
+    const [trade] = await db
+      .update(trades)
+      .set({ status, acceptedById })
+      .where(eq(trades.id, id))
+      .returning();
+    return trade || undefined;
   }
 
   async updateTrade(id: number, updates: Partial<Trade>): Promise<Trade | undefined> {
@@ -66,7 +106,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteTrade(id: number): Promise<boolean> {
     const result = await db.delete(trades).where(eq(trades.id, id));
-    return result.rowCount > 0;
+    return (result.rowCount || 0) > 0;
   }
 
   async incrementTradeViews(id: number): Promise<void> {
@@ -89,8 +129,8 @@ export class DatabaseStorage implements IStorage {
     }
   }
 
-  async searchTrades(query: string): Promise<Trade[]> {
-    const allTrades = await db.select().from(trades);
+  async searchTrades(query: string, region: string): Promise<Trade[]> {
+    const allTrades = await db.select().from(trades).where(eq(trades.region, region));
     const lowercaseQuery = query.toLowerCase();
     return allTrades
       .filter(trade => 
@@ -101,12 +141,32 @@ export class DatabaseStorage implements IStorage {
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
 
-  async getTradesByCategory(category: string): Promise<Trade[]> {
-    if (category === "all") {
-      return this.getAllTrades();
-    }
-    
-    return await db.select().from(trades).where(eq(trades.category, category));
+  async getChatsByTradeId(tradeId: number): Promise<Chat[]> {
+    return await db.select().from(chats)
+      .where(eq(chats.tradeId, tradeId))
+      .orderBy(chats.createdAt);
+  }
+
+  async createChatMessage(chat: InsertChat): Promise<Chat> {
+    const [message] = await db
+      .insert(chats)
+      .values(chat)
+      .returning();
+    return message;
+  }
+
+  async createRating(rating: InsertRating): Promise<Rating> {
+    const [newRating] = await db
+      .insert(ratings)
+      .values(rating)
+      .returning();
+    return newRating;
+  }
+
+  async getRatingsByUserId(userId: number): Promise<Rating[]> {
+    return await db.select().from(ratings)
+      .where(eq(ratings.toUserId, userId))
+      .orderBy(ratings.createdAt);
   }
 }
 
