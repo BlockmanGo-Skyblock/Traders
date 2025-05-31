@@ -52,7 +52,7 @@ export const offers = pgTable("offers", {
   offerText: text("offer_text").notNull(),
   status: text("status").notNull().default("pending"), // pending, accepted, declined
   isCounterOffer: boolean("is_counter_offer").notNull().default(false),
-  parentOfferId: integer("parent_offer_id").references(() => offers.id),
+  parentOfferId: integer("parent_offer_id"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
