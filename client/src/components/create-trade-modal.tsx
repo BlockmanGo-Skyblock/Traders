@@ -55,7 +55,7 @@ export default function CreateTradeModal({ isOpen, onClose, onSuccess }: CreateT
       offers: "",
       notes: "",
       contactMethod: "discord",
-      authorName: "Player", // In a real app, this would come from auth
+      authorName: "",
     },
   });
 
@@ -141,23 +141,7 @@ export default function CreateTradeModal({ isOpen, onClose, onSuccess }: CreateT
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="authorName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Your Username</FormLabel>
-                  <FormControl>
-                    <Input 
-                      placeholder="Your in-game username" 
-                      className="bg-background border-border"
-                      {...field} 
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
