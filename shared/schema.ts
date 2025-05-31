@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, timestamp, varchar, jsonb, index } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, timestamp, varchar, jsonb, index, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -41,6 +41,18 @@ export const trades = pgTable("trades", {
   views: integer("views").notNull().default(0),
   responses: integer("responses").notNull().default(0),
   images: text("images").array(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const offers = pgTable("offers", {
+  id: serial("id").primaryKey(),
+  tradeId: integer("trade_id").references(() => trades.id).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  userName: text("user_name").notNull(),
+  offerText: text("offer_text").notNull(),
+  status: text("status").notNull().default("pending"), // pending, accepted, declined
+  isCounterOffer: boolean("is_counter_offer").notNull().default(false),
+  parentOfferId: integer("parent_offer_id").references(() => offers.id),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
@@ -91,6 +103,11 @@ export const insertChatSchema = createInsertSchema(chats).omit({
   createdAt: true,
 });
 
+export const insertOfferSchema = createInsertSchema(offers).omit({
+  id: true,
+  createdAt: true,
+});
+
 export const insertRatingSchema = createInsertSchema(ratings).omit({
   id: true,
   createdAt: true,
@@ -101,6 +118,8 @@ export type LoginUser = z.infer<typeof loginSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertTrade = z.infer<typeof insertTradeSchema>;
 export type Trade = typeof trades.$inferSelect;
+export type Offer = typeof offers.$inferSelect;
+export type InsertOffer = z.infer<typeof insertOfferSchema>;
 export type Chat = typeof chats.$inferSelect;
 export type InsertChat = z.infer<typeof insertChatSchema>;
 export type Rating = typeof ratings.$inferSelect;

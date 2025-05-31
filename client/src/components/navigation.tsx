@@ -63,7 +63,7 @@ export default function Navigation({ onCreateTrade, searchQuery, onSearchChange 
               <div className="w-10 h-10 bg-gradient-to-r from-electric-blue to-gaming-purple rounded-lg flex items-center justify-center">
                 <Box className="text-white h-5 w-5" />
               </div>
-              <span className="text-xl font-bold text-electric-blue">BlockTrade</span>
+              <span className="text-xl font-bold text-electric-blue">BGST</span>
             </Link>
           </div>
           

@@ -7,9 +7,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Platform Info */}
           <div>
-            <h3 className="font-bold text-lg mb-4 text-gaming-green">Blockman Go Trading</h3>
+            <h3 className="font-bold text-lg mb-4 text-gaming-green">BGST</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              The ultimate trading platform for Blockman Go Skyblock items. Trade safely with verified players worldwide.
+              BlockmanGo Skyblock Traders - The ultimate trading platform for Blockman Go Skyblock items. Trade safely with verified players worldwide.
             </p>
             <a 
               href="https://discord.gg/YZnrRNhrsa" 
