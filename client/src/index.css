@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 11% 8%; /* #111827 */
+  --foreground: 210 40% 98%; /* #f8fafc */
+  --muted: 210 40% 15%; /* #1f2937 */
+  --muted-foreground: 215 16% 47%; /* #6b7280 */
+  --popover: 210 11% 15%; /* #1f2937 */
+  --popover-foreground: 210 40% 98%; /* #f8fafc */
+  --card: 210 11% 15%; /* #1f2937 */
+  --card-foreground: 210 40% 98%; /* #f8fafc */
+  --border: 215 14% 25%; /* #374151 */
+  --input: 215 14% 25%; /* #374151 */
+  --primary: 217 91% 60%; /* #3b82f6 */
+  --primary-foreground: 210 40% 98%; /* #f8fafc */
+  --secondary: 210 40% 15%; /* #1f2937 */
+  --secondary-foreground: 210 40% 98%; /* #f8fafc */
+  --accent: 217 91% 60%; /* #3b82f6 */
+  --accent-foreground: 210 40% 98%; /* #f8fafc */
+  --destructive: 0 84% 60%; /* #ef4444 */
+  --destructive-foreground: 210 40% 98%; /* #f8fafc */
+  --ring: 217 91% 60%; /* #3b82f6 */
+  --radius: 0.5rem;
+  
+  /* Gaming-specific colors */
+  --gaming-blue: 229 84% 32%; /* #1e3a8a */
+  --electric-blue: 217 91% 60%; /* #3b82f6 */
+  --gaming-purple: 258 90% 66%; /* #8b5cf6 */
+  --gaming-green: 158 64% 52%; /* #10b981 */
+  --gaming-gold: 43 96% 56%; /* #f59e0b */
+}
+
+.dark {
+  --background: 210 11% 8%; /* #111827 */
+  --foreground: 210 40% 98%; /* #f8fafc */
+  --muted: 210 40% 15%; /* #1f2937 */
+  --muted-foreground: 215 16% 47%; /* #6b7280 */
+  --popover: 210 11% 15%; /* #1f2937 */
+  --popover-foreground: 210 40% 98%; /* #f8fafc */
+  --card: 210 11% 15%; /* #1f2937 */
+  --card-foreground: 210 40% 98%; /* #f8fafc */
+  --border: 215 14% 25%; /* #374151 */
+  --input: 215 14% 25%; /* #374151 */
+  --primary: 217 91% 60%; /* #3b82f6 */
+  --primary-foreground: 210 40% 98%; /* #f8fafc */
+  --secondary: 210 40% 15%; /* #1f2937 */
+  --secondary-foreground: 210 40% 98%; /* #f8fafc */
+  --accent: 217 91% 60%; /* #3b82f6 */
+  --accent-foreground: 210 40% 98%; /* #f8fafc */
+  --destructive: 0 84% 60%; /* #ef4444 */
+  --destructive-foreground: 210 40% 98%; /* #f8fafc */
+  --ring: 217 91% 60%; /* #3b82f6 */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .bg-gaming-blue {
+    background-color: hsl(var(--gaming-blue));
+  }
+  
+  .bg-electric-blue {
+    background-color: hsl(var(--electric-blue));
+  }
+  
+  .bg-gaming-purple {
+    background-color: hsl(var(--gaming-purple));
+  }
+  
+  .bg-gaming-green {
+    background-color: hsl(var(--gaming-green));
+  }
+  
+  .bg-gaming-gold {
+    background-color: hsl(var(--gaming-gold));
+  }
+  
+  .text-electric-blue {
+    color: hsl(var(--electric-blue));
+  }
+  
+  .text-gaming-green {
+    color: hsl(var(--gaming-green));
+  }
+  
+  .text-gaming-purple {
+    color: hsl(var(--gaming-purple));
+  }
+  
+  .text-gaming-gold {
+    color: hsl(var(--gaming-gold));
+  }
+  
+  .border-electric-blue {
+    border-color: hsl(var(--electric-blue));
+  }
+  
+  .gradient-gaming {
+    background: linear-gradient(135deg, hsl(var(--electric-blue)), hsl(var(--gaming-purple)));
+  }
+}
