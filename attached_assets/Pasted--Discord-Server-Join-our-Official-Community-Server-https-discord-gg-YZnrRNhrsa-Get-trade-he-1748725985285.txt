@@ -1,0 +1,82 @@
+📌 Discord Server
+Join our Official Community Server:
+🔗 https://discord.gg/YZnrRNhrsa
+
+Get trade help
+
+Ask questions
+
+Meet other Blockman Go Skyblock players
+
+Stay updated on new features
+
+📌 Trading Rules
+Only post trades related to Blockman Go Skyblock.
+
+No fake offers or misleading item names.
+
+Stick to your assigned region—cross-region trades are not supported.
+
+Don’t spam or repost within the 10-minute cooldown.
+
+Use the Accept/Decline system honestly—scams are reported and banned.
+
+📌 Safety Guidelines
+Always verify a trade in chat before confirming.
+
+Never share personal information like passwords or emails.
+
+Use the in-site messaging for all communication—do not trust off-site links.
+
+If something feels off, report the user immediately.
+
+Admins will never ask for your login info.
+
+📌 Help Center
+Need help with your account, trades, or region settings?
+Check our Discord or use the Contact Us form for quick support.
+We respond within 24 hours.
+
+📌 Report User
+Think someone is breaking the rules?
+
+Go to the trade page
+
+Click “Report” and choose the reason
+
+Reports are only reviewed by @xSoniteALT
+Serious offenders will be banned.
+
+📌 Contact Us
+Use our Discord server to get in touch:
+🔗 https://discord.gg/YZnrRNhrsa
+
+You can also ask questions, report bugs, and suggest features in the #support channel.
+
+📌 Terms of Service
+By using our platform, you agree to:
+
+Not abuse, spam, or exploit any features
+
+Respect other users and regions
+
+Accept that we may limit access if rules are broken
+
+Admins have the final say in disputes
+
+Use trades responsibly—we are not liable for personal scams
+
+📌 Privacy Policy
+We collect minimal user data (username, email, region) for account and trading purposes.
+Your data is stored securely in PostgreSQL and never sold.
+You can request deletion at any time.
+
+📌 Cookie Policy
+This site uses cookies to:
+
+Store your theme (dark/light)
+
+Keep you logged in
+
+Improve your trading experience
+By continuing to use the site, you agree to our cookie usage.

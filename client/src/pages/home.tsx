@@ -4,6 +4,7 @@ import Navigation from "@/components/navigation";
 import FilterSection from "@/components/filter-section";
 import TradeCard from "@/components/trade-card";
 import CreateTradeModal from "@/components/create-trade-modal";
+import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Box, Handshake, List } from "lucide-react";
 import type { Trade } from "@shared/schema";
@@ -128,53 +129,7 @@ export default function Home() {
         }}
       />
 
-      {/* Footer */}
-      <footer className="bg-card border-t border-border mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-electric-blue to-gaming-purple rounded-lg flex items-center justify-center">
-                  <Box className="text-white h-4 w-4" />
-                </div>
-                <span className="text-lg font-bold text-electric-blue">BlockTrade</span>
-              </div>
-              <p className="text-muted-foreground text-sm">The ultimate marketplace for Blockman Go Skyblock item trading.</p>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4">Community</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-electric-blue transition-colors">Discord Server</a></li>
-                <li><a href="#" className="hover:text-electric-blue transition-colors">Trading Rules</a></li>
-                <li><a href="#" className="hover:text-electric-blue transition-colors">Safety Guidelines</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4">Support</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-electric-blue transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-electric-blue transition-colors">Report User</a></li>
-                <li><a href="#" className="hover:text-electric-blue transition-colors">Contact Us</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-electric-blue transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-electric-blue transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-electric-blue transition-colors">Cookie Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 BlockTrade. All rights reserved. Not affiliated with Blockman Go.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
